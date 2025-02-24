@@ -12,4 +12,5 @@ def main ():
     # Subtítulo: 
     #st.markdown("h3 style = 'text-align: center'; color: black; font-family: \'Droid Sans Mono\', monospace;'> \n\n¿Quieres comprar o vender?\n\n </h3>");
 
-  
+if __name__ == "__main__":
+    main()
