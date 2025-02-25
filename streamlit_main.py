@@ -25,7 +25,7 @@ def main ():
         #if st.button("Quiero un coche nuevo"): st.write("Has seleccionado: Quiero un coche nuevo.");
         if st.button("Quiero un coche nuevo"):  switch_page("compra_coche");
     with col2:
-        if st.button("Quiero vender mi coche"): st.write("Has seleccionado: Quiero vender mi coche.");
+        if st.button("Quiero vender mi coche"): switch_page("vende_coche");
     
 if __name__ == "__main__":
     main()
