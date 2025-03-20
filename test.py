@@ -16,7 +16,7 @@ def main ():
     page_bg_color = """
     <style>
     [data-testid="stAppViewContainer"] {
-        background-color: #fa2f5b;
+        background-color: #f5dae0;
     }
     </style>
     """
