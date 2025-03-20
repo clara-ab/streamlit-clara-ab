@@ -16,7 +16,7 @@ def main ():
     page_bg_color = """
     <style>
     body {
-        background-color: #fae6e6; 
+        background-color: #ffd4dd; 
     }
     </style>
     """
