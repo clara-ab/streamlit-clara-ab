@@ -12,11 +12,11 @@ from streamlit_extras.switch_page_button import switch_page
 # # # # # INICIO MAIN FUNCTION # # # # #
 def main ():
 
-    # Aplicar fondo con un div
+    # Estilo de fondo
     page_bg_color = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background-color: #85630b; 
+    body {
+        background-color: #fae6e6; 
     }
     </style>
     """
