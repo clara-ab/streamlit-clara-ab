@@ -38,13 +38,16 @@ st.markdown("## DATOS BÁSICOS");
 
 # Campo - Año de Fabricación:
 year_fabricacion = st.number_input("Año de fabricación del coche:", min_value = 1900, max_value = 2025);
+st.session_state.year_fabricacion = year_fabricacion; # Se guarda el año de fabricación para poder invocarlo donde sea
 
 # Campo - Fabricante:
 fabricante = st.text_input("Fabricante:");
 if fabricante and not validar_letras(fabricante): st.error("El fabricante solo puede contener letras."); # Se comprueba si solo contiene letras
+st.session_state.fabricante = fabricante ; # Se guarda el fabricante para poder invocarlo donde sea
 
 # Campo - Modelo:
 modelo = st.text_input("Modelo:");
+st.session_state.modelo = modelo; # Se guarda el modelo para poder invocarlo donde sea
 
 # Campo - Tipo de Coche:
 tipo_coche = st.selectbox("Tipo de Coche:", ["Sedan", "SUV", "Hatchback", "Convertible", "Coupe", "Wagon", "Truck", "Van"]);

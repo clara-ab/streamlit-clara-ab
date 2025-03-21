@@ -69,8 +69,15 @@ if telefono and not telefono.isdigit(): st.error("El número de teléfono solo p
 # Campo - Estado de EEUU:
 estado_seleccionado = st.selectbox("Selecciona el estado de EE.UU.:", estados_eeuu)
 
+# Para el modelo harán falta las siglas por lo que se guardan aisladas:
+if estado_seleccionado:
+    siglas_estado = estado_seleccionado.split(" (")[1][:-1];
+    st.session_state.estado = siglas_estado; # Se guardan las siglas para poder invocarlas donde sea
+
+
 # Se añade un espacio:
 st.markdown("<br>", unsafe_allow_html=True);
+
 
 # Botón para pasar a la siguiente página del formulario:
 if st.button("Siguiente  ➡️  Datos Básicos"): switch_page("tasar_coche_particular_basic_page");
