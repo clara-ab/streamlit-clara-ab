@@ -9,9 +9,10 @@ from streamlit_extras.switch_page_button import switch_page
 
 # # # # #  FIN LIBRERÍAS # # # # #
 
+
 # # # # #  INICIO FUNCIÓN TASAR COCHE PARTICULAR (1) # # # # #
 
-# Se aplica un color de fondo #f5dae0:
+# Se aplica un color de fondo deseado #fffafe:
 page_bg_color = """
     <style>
     [data-testid="stAppViewContainer"] {
@@ -21,13 +22,15 @@ page_bg_color = """
     """
 st.markdown(page_bg_color, unsafe_allow_html = True);
 
-# Función para validar si un texto contiene solo letras
+
+# Función para validar si un texto contiene solo letras:
 def validar_letras(texto): return texto.isalpha();
 
-# Función para validar el correo electrónico
+# Función para validar un correo electrónico:
 def validar_email(email): return '@' in email and '.' in email;
 
-# Lista de estados de EE.UU. con las siglas
+
+# Lista de estados de EE.UU. con las siglas:
 estados_eeuu = [
     'Alabama (AL)', 'Alaska (AK)', 'Arizona (AZ)', 'Arkansas (AR)', 'California (CA)', 'Colorado (CO)', 'Connecticut (CT)', 
     'Delaware (DE)', 'Florida (FL)', 'Georgia (GA)', 'Hawaii (HI)', 'Idaho (ID)', 'Illinois (IL)', 'Indiana (IN)', 'Iowa (IA)', 
@@ -39,37 +42,40 @@ estados_eeuu = [
     'Wisconsin (WI)', 'Wyoming (WY)', 'Washington D.C. (DC)'
 ]
 
-# Título:
+
+# Título - 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼:
 st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
 
 
-# Sección de Datos de Contacto
-st.markdown("## DATOS DE CONTACTO")
-nombre = st.text_input("Nombre:")
-if nombre and not validar_letras(nombre):
-    st.error("El nombre solo puede contener letras.")
+# Título - Datos de Contacto:
+st.markdown("## DATOS DE CONTACTO");
 
-apellidos = st.text_input("1er Apellido:")
-if apellidos and not validar_letras(apellidos):
-    st.error("Los apellidos solo pueden contener letras.")
+# Campo - Nombre:
+nombre = st.text_input("Nombre:");
+if nombre and not validar_letras(nombre): st.error("El nombre solo puede contener letras."); # Se comprueba si solo tiene letras
 
-email = st.text_input("Correo electrónico:")
-if email and not validar_email(email):
-    st.error("Por favor ingresa un correo electrónico válido.")
+# Campo - Apellido:
+apellidos = st.text_input("1er Apellido:");
+if apellidos and not validar_letras(apellidos): st.error("Los apellidos solo pueden contener letras."); # Se comprueba si solo tiene letras
 
-telefono = st.text_input("Número de Teléfono:")
-if telefono and not telefono.isdigit():
-    st.error("El número de teléfono solo puede contener números.")
-    
+# Campo - Email:
+email = st.text_input("Correo electrónico:");
+if email and not validar_email(email): st.error("Por favor ingresa un correo electrónico válido."); # Se comprueba si es un correo válido (tiene @ y .)
+
+# Campo - Número de Teléfono:
+telefono = st.text_input("Número de Teléfono:");
+if telefono and not telefono.isdigit(): st.error("El número de teléfono solo puede contener números."); # Se comprueba si solo tiene números.
+
+# Campo - Estado de EEUU:
 estado_seleccionado = st.selectbox("Selecciona el estado de EE.UU.:", estados_eeuu)
 
-# Añadir espacio con <br> (salto de línea) para un margen más grande
+# Se añade un espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
-if st.button("Siguiente  ➡️  Datos Básicos"): 
-    switch_page("tasar_coche_particular_basic_page");
+# Botón para pasar a la siguiente página del formulario:
+if st.button("Siguiente  ➡️  Datos Básicos"): switch_page("tasar_coche_particular_basic_page");
 
-# Botón para volver al inicio en la barra lateral
+# Botón para volver al inicio en la barra lateral:
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
 
 # # # # #  FIN FUNCIÓN TASAR COCHE PARTICULAR (1) # # # # #

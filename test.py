@@ -1,3 +1,4 @@
+
 # # # # # INICIO LIBRERÍAS # # # # #
 
 # Librería para pdoer utilizar Streamlit
@@ -26,19 +27,19 @@ def main ():
     st.markdown(page_bg_color, unsafe_allow_html = True);
 
 
-    # Título:
+    # Título - 🚗 CLARA'S CAR CORNER 🚗 :
     st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html = True);
     
-    # Añadir espacio con <br> (salto de línea) para un margen más grande
+    # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
 
     # Imagen:
     st.image("images/portada_coches.png", use_container_width = True);
 
-    # Añadir espacio con <br> (salto de línea) para un margen más grande
+    # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
 
-    # Texto introductorio para la página de la empresa
+    # Texto introductorio para la página de la empresa:
     st.markdown("""
         # ¡Bienvenido a **Clara's Car Corner**! 🚗✨
 
@@ -60,15 +61,16 @@ def main ():
 
         Si **quieres vender tu coche 🚙**, estamos aquí para ayudarte a hacerlo de la manera más **fácil** y **segura** posible.  
         ¡Descubre todo lo que **Clara's Car Corner** tiene para ofrecerte! 🌟
-    """)
+    """);
     
     # Subtítulo: 
     st.markdown("<h3 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html = True);
     
-    # Añadir espacio con <br> (salto de línea) para un margen más grande
+    # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
 
-    # Botones:
+    # Botones - Particular vs. Empresa:
+
     # Se crean tres columnas para solo rellenar la del medio:
     col1, col2, col3 = st.columns([1, 1, 1]);
 
@@ -77,13 +79,13 @@ def main ():
         # Se generan dos columnas en la columna del medio para los dos botones:
         col_a, col_b = st.columns(2);
     
-    # Botón "Particular":
-    with col_a:
-        if st.button("Particular"): switch_page("particular_page"); # Si lo pulsan, se cambia de página:
-    
-    # Botón "Empresa":
-    with col_b:
-        if st.button("Empresa"): switch_page("empresa_page"); # Si lo pulsan, se cambia de página:
+        # Botón "Particular":
+        with col_a:
+            if st.button("Particular"): switch_page("particular_page"); # Si lo pulsan, se cambia de página:
+        
+        # Botón "Empresa":
+        with col_b:
+            if st.button("Empresa"): switch_page("empresa_page"); # Si lo pulsan, se cambia de página:
     
     # Botones de selección:
     #col1, col2 = st.columns(2) # Se crean dos "columnas" para organizar los botones en disposición horizontal:
