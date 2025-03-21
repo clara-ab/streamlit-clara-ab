@@ -15,7 +15,31 @@ import sklearn
 
 import numpy as np
 
+from huggingface_hub import hf_hub_download
+
 # # # # #  FIN LIBRERÍAS # # # # #
+
+# Función para cargar el modelo desde Hugging Face
+def cargar_modelo():
+    # Descargar el modelo desde Hugging Face
+    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl")
+    
+    # Cargar el modelo descargado
+    with open(modelo_path, "rb") as file:
+        modelo = pickle.load(file)
+    
+    return modelo
+
+# Función para cargar los encoders desde Hugging Face
+def cargar_encoders():
+    # Descargar el archivo de encoders desde Hugging Face
+    encoders_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="encoders.pkl")
+    
+    # Cargar los encoders desde la ruta descargada
+    with open(encoders_path, "rb") as file:
+        encoders = pickle.load(file)
+    
+    return encoders
 
 
 # # # # #  INICIO TASADOR PARTICULAR  # # # # #
@@ -32,8 +56,7 @@ st.markdown(page_bg_color, unsafe_allow_html = True);
 
 
 # Cargar el modelo previamente guardado
-with open("models/random_forest_grid_model.pkl", "rb") as file:
-    modelo = pickle.load(file)
+modelo = cargar_modelo();
 
 # Crear un DataFrame con los datos almacenados en session_state
 data = {
@@ -57,9 +80,8 @@ df_input = pd.DataFrame(data);
 # Mostrar el DataFrame con los valores ingresados
 st.write("Datos ingresados para la predicción:", df_input)
 
-# Cargar el diccionario de encoders previamente guardados
-with open("models/encoders.pkl", "rb") as file:
-    encoders = pickle.load(file)
+# Cargar los encoders previamente guardados
+encoders = cargar_encoders();
 
 # Identificar las columnas categóricas en df_input
 categorical_cols = df_input.select_dtypes(include=["object"]).columns.tolist();
@@ -81,7 +103,7 @@ if st.button("Realizar Predicción"):
     prediccion_original = np.exp(prediccion);
     
     # Mostrar el resultado
-    st.success(f"El valor estimado del coche es: ${prediccion_original[0]}")
+    st.success(f"El valor estimado del coche es: ${prediccion_original[0]:.0f}")
 
 
 # # # # #  FIN TASADOR PARTICULAR  # # # # #

@@ -13,6 +13,8 @@ import pickle
 
 import numpy as np
 
+from huggingface_hub import hf_hub_download
+
 # # # # #  FIN LIBRERÍAS # # # # #
 
 # Función para limpiar los datos antes de hacer predicciones
@@ -34,6 +36,28 @@ def limpiar_datos(df):
     df['cylinders'] = pd.to_numeric(df['cylinders'], errors='coerce')
     
     return df
+
+# Función para cargar el modelo desde Hugging Face
+def cargar_modelo():
+    # Descargar el modelo desde Hugging Face
+    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl")
+    
+    # Cargar el modelo descargado
+    with open(modelo_path, "rb") as file:
+        modelo = pickle.load(file)
+    
+    return modelo
+
+# Función para cargar los encoders desde Hugging Face
+def cargar_encoders():
+    # Descargar el archivo de encoders desde Hugging Face
+    encoders_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="encoders.pkl")
+    
+    # Cargar los encoders desde la ruta descargada
+    with open(encoders_path, "rb") as file:
+        encoders = pickle.load(file)
+    
+    return encoders
 
 
 # # # # #  INICIO FUNCIÓN TASAR COCHE EMPRESA (1) # # # # #
@@ -137,18 +161,16 @@ if archivo_coche is not None:
     if not all(col in df_input.columns for col in columnas_requeridas):
         st.error("El archivo Excel no contiene todas las columnas necesarias.")
     else:
-        # Cargar el modelo previamente entrenado
-        with open("models/random_forest_grid_model.pkl", "rb") as file:
-            modelo = pickle.load(file)
+        # Cargar el modelo previamente guardado
+        modelo = cargar_modelo();
 
         # Preprocesamiento de las variables si es necesario (por ejemplo, convertir categorías)
 
         # Aplicar la limpieza de datos al dataframe cargado
         df_input = limpiar_datos(df_input)
 
-        # Cargar el diccionario de encoders previamente guardados
-        with open("models/encoders.pkl", "rb") as file:
-            encoders = pickle.load(file)
+        # Cargar los encoders previamente guardados
+        encoders = cargar_encoders();
 
         # Identificar las columnas categóricas en df_input
         categorical_cols = df_input.select_dtypes(include=["object"]).columns.tolist()
