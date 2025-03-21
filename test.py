@@ -13,7 +13,7 @@ from streamlit_extras.switch_page_button import switch_page
 def main ():
 
     # Se configura la página para poder aprovechar toda la página:
-    st.set_page_config(page_title = "🚗 VENDE TU COCHE 🚗", page_icon = ":car:", layout = "wide");
+    st.set_page_config(page_title = "🚗 CLARA'S CAR CORNER 🚗", page_icon = ":car:", layout = "wide");
 
     # Se aplica un color de fondo deseado #ffe3e8:
     page_bg_color = """
@@ -27,8 +27,14 @@ def main ():
 
 
     # Título:
-    st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🚗 VENDE TU COCHE 🚗 </h1>", unsafe_allow_html = True);
+    st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html = True);
     
+    # Añadir espacio con <br> (salto de línea) para un margen más grande
+    st.markdown("<br>", unsafe_allow_html=True);
+
+    # Imagen:
+    st.image("images/portada_coches.png", use_container_width = True);
+
     # Añadir espacio con <br> (salto de línea) para un margen más grande
     st.markdown("<br>", unsafe_allow_html=True);
 
@@ -37,7 +43,7 @@ def main ():
         # ¡Bienvenido a **Clara's Car Corner**! 🚗✨
 
         **¿Estás buscando vender tu coche usado?**  
-        ¡Estás en el lugar adecuado! En **Clara's Car Corner**, nos especializamos en ofrecer un proceso de compra y venta de coches de segunda mano **transparente**, **rápido** y **sin complicaciones**. 💨
+        ¡Estás en el lugar adecuado! En **Clara's Car Corner**, nos especializamos en ofrecer un proceso de venta de coches de segunda mano **transparente**, **rápido** y **sin complicaciones**. 💨
 
         ## ¿Por qué elegirnos? 🤔
 
@@ -55,13 +61,7 @@ def main ():
         Si **quieres vender tu coche 🚙**, estamos aquí para ayudarte a hacerlo de la manera más **fácil** y **segura** posible.  
         ¡Descubre todo lo que **Clara's Car Corner** tiene para ofrecerte! 🌟
     """)
-
-    # Imagen:
-    st.image("images/portada_coches.png", use_container_width = True);
-
-    # Añadir espacio con <br> (salto de línea) para un margen más grande
-    st.markdown("<br>", unsafe_allow_html=True);
-
+    
     # Subtítulo: 
     st.markdown("<h3 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html = True);
     
