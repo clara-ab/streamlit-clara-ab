@@ -40,11 +40,11 @@ def limpiar_datos(df):
 # Función para cargar el modelo desde Hugging Face
 def cargar_modelo():
     # Descargar el modelo desde Hugging Face
-    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl")
+    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl");
     
     # Cargar el modelo descargado
     with open(modelo_path, "rb") as file:
-        modelo = pickle.load(file)
+        modelo = pickle.load(file);
     
     return modelo
 
@@ -188,8 +188,8 @@ if archivo_coche is not None:
         df_input['predicted_price'] = predicciones_originales
 
         # Mostrar el DataFrame con las predicciones
-        st.write("Archivo con las predicciones:")
-        st.write(df_input)
+        st.write("Archivo con las predicciones:");
+        st.write(df_input);
 
         # Guardar el archivo con las predicciones en un nuevo archivo Excel
         archivo_con_predicciones = "archivo_con_predicciones.xlsx"
