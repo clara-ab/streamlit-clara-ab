@@ -7,7 +7,33 @@ import streamlit as st
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
+import pandas as pd
+
+import pickle
+
+import numpy as np
+
 # # # # #  FIN LIBRERÍAS # # # # #
+
+# Función para limpiar los datos antes de hacer predicciones
+def limpiar_datos(df):
+    # Convierte las columnas de texto a minúsculas y reemplaza guiones por espacios cuando sea necesario
+    df['region'] = df['region'].str.lower()
+    df['state'] = df['state'].str.lower()
+    df['manufacturer'] = df['manufacturer'].str.lower()
+    df['model'] = df['model'].str.replace("-", " ").str.lower()
+    df['type'] = df['type'].str.lower()
+    df['condition'] = df['condition'].str.lower()
+    df['paint_color'] = df['paint_color'].str.lower()
+    df['fuel'] = df['fuel'].str.lower()
+    df['drive'] = df['drive'].str.lower()
+    df['transmission'] = df['transmission'].str.lower()
+    
+    # Asegurarse de que 'odometer' y 'cylinders' son numéricos
+    df['odometer'] = pd.to_numeric(df['odometer'], errors='coerce')
+    df['cylinders'] = pd.to_numeric(df['cylinders'], errors='coerce')
+    
+    return df
 
 
 # # # # #  INICIO FUNCIÓN TASAR COCHE EMPRESA (1) # # # # #
@@ -62,7 +88,7 @@ st.write("""
 """);
 
 # Ruta del archivo de Excel que se ofrece para descarga:
-archivo_modelo = "data/raw/test_excel.csv"
+archivo_modelo = "data/raw/test_excel.xlsx"
 
 # Botón - Descarga del archivo:
 with open(archivo_modelo, "rb") as f:
@@ -91,7 +117,71 @@ st.write("""
 """);
 
 # Subida de archivo CSV:
-archivo_coche = st.file_uploader("Sube el archivo CSV con los coches a vender", type = "csv");
+archivo_coche = st.file_uploader("Sube el archivo CSV con los coches a vender", type = "xlsx");
+
+# Si el archivo es subido, procesarlo:
+if archivo_coche is not None:
+    # Leer el archivo Excel con pandas
+    df_input = pd.read_excel(archivo_coche)
+    
+    # Mostrar las primeras filas del archivo cargado para verificar
+    st.write("Datos cargados del archivo:")
+    st.write(df_input.head())
+
+    # Verificar que las columnas necesarias están presentes
+    columnas_requeridas = [
+        'region', 'year', 'manufacturer', 'model', 'condition', 'cylinders', 'fuel',
+        'odometer', 'transmission', 'drive', 'type', 'paint_color', 'state'
+    ]
+    
+    if not all(col in df_input.columns for col in columnas_requeridas):
+        st.error("El archivo Excel no contiene todas las columnas necesarias.")
+    else:
+        # Cargar el modelo previamente entrenado
+        with open("models/random_forest_grid_model.pkl", "rb") as file:
+            modelo = pickle.load(file)
+
+        # Preprocesamiento de las variables si es necesario (por ejemplo, convertir categorías)
+
+        # Aplicar la limpieza de datos al dataframe cargado
+        df_input = limpiar_datos(df_input)
+
+        # Cargar el diccionario de encoders previamente guardados
+        with open("models/encoders.pkl", "rb") as file:
+            encoders = pickle.load(file)
+
+        # Identificar las columnas categóricas en df_input
+        categorical_cols = df_input.select_dtypes(include=["object"]).columns.tolist()
+
+        # Aplicar el LabelEncoder a las columnas categóricas en df_input
+        for column in categorical_cols:
+            # Usamos el diccionario de encoders y el método .get para aplicar el encoder correspondiente
+            df_input[column] = df_input[column].apply(lambda x: encoders[column].transform([x])[0] if x in encoders[column].classes_ else -1)
+
+        # Realizar predicciones con las variables del archivo
+        predicciones = modelo.predict(df_input[columnas_requeridas])
+        predicciones_originales = np.exp(predicciones);
+
+        # Añadir las predicciones al DataFrame como una nueva columna
+        df_input['predicted_price'] = predicciones_originales
+
+        # Mostrar el DataFrame con las predicciones
+        st.write("Archivo con las predicciones:")
+        st.write(df_input)
+
+        # Guardar el archivo con las predicciones en un nuevo archivo Excel
+        archivo_con_predicciones = "archivo_con_predicciones.xlsx"
+        df_input.to_excel(archivo_con_predicciones, index=False)
+
+        # Botón para que el usuario descargue el archivo con las predicciones
+        with open(archivo_con_predicciones, "rb") as f:
+            st.download_button(
+                label="📥 Descargar archivo con las predicciones",
+                data=f,
+                file_name="archivo_con_predicciones.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
 
 # Botón para volver al inicio en la barra lateral:
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
