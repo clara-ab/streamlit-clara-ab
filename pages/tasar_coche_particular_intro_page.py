@@ -67,12 +67,18 @@ telefono = st.text_input("Número de Teléfono:");
 if telefono and not telefono.isdigit(): st.error("El número de teléfono solo puede contener números."); # Se comprueba si solo tiene números.
 
 # Campo - Estado de EEUU:
-estado_seleccionado = st.selectbox("Selecciona el estado de EE.UU.:", estados_eeuu)
+estado_seleccionado = st.selectbox("Selecciona el estado de EE.UU.:", estados_eeuu);
+
+# Campo - Región de EEUU:
+region_estado = st.text_input("Región de EEUU:");
+if region_estado and not validar_letras(region_estado): st.error("Las regiones solo pueden contener letras."); # Se comprueba si solo tiene letras
+st.session_state.region_estado = region_estado.lower();
 
 # Para el modelo harán falta las siglas por lo que se guardan aisladas:
 if estado_seleccionado:
     siglas_estado = estado_seleccionado.split(" (")[1][:-1];
-    st.session_state.estado = siglas_estado; # Se guardan las siglas para poder invocarlas donde sea
+    st.session_state.siglas_estado = siglas_estado.lower(); # Se guardan las siglas para poder invocarlas donde sea
+
 
 
 # Se añade un espacio:

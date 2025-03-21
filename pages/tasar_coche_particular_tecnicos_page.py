@@ -7,12 +7,6 @@ import streamlit as st
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
-import pickle
-
-import pandas as pd
-
-import sklearn
-
 # # # # #  FIN LIBRERÍAS # # # # #
 
 
@@ -43,19 +37,19 @@ st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\',
 st.markdown("## DETALLES TÉCNICOS");
 
 # Campo - Tipo de Combustible:
-tipo_combustible = st.selectbox("Tipo de Combustible:", ["Gas", "Diesel", "Electric", "Other"]);
+tipo_combustible = st.selectbox("Tipo de Combustible:", ['gas', 'diesel', 'hybrid', 'electric', 'other']);
 st.session_state.tipo_combustible = tipo_combustible;  # Se guarda el tipo de combustible para poder invocarlo donde sea
 
 # Campo - Número de Cilindrada:
-numero_cilindrada = st.number_input("Número de Cilindrada:", min_value=1);
+numero_cilindrada = st.selectbox("Número de Cilindrada:", [0, 4, 6, 8, 10]);
 st.session_state.numero_cilindrada = numero_cilindrada; # Se guarda el número de cilindrada para poder invocarlo donde sea
 
 # Campo - Tracción:
-tipo_traccion = st.selectbox("Tipo de Tracción:", ["RWD", "FWD", "4WD"]);
+tipo_traccion = st.selectbox("Tipo de Tracción:", ['4wd', 'rwd', 'fwd']);
 st.session_state.tipo_traccion = tipo_traccion; # Se guarda el tipo de tracción para poder invocarlo donde sea
 
 # Campo - Transmisión:
-tipo_transmision = st.selectbox("Tipo de Transmisión:", ["Manual", "Automático", "Other"]);
+tipo_transmision = st.selectbox("Tipo de Transmisión:", ['automatic', 'other', 'manual']);
 st.session_state.tipo_transmision = tipo_transmision; # Se guarda el tipo de transmisión para poder invocarlo donde sea
 
 # Se añade un espacio:
@@ -73,40 +67,10 @@ imagen_coche = st.file_uploader("Sube una imagen de tu coche (opcional)", type =
 
 if imagen_coche: st.image(imagen_coche, caption = "Imagen subida", use_container_width = True); # Si se ha subido una imagen, se muestra:
 
-# Cargar el modelo previamente guardado
-with open("models/random_forest_grid_model.pkl", "rb") as file:
-    modelo = pickle.load(file)
-
-# Crear un DataFrame con los datos almacenados en session_state
-data = {
-    "region":"alabama",
-    "year": [st.session_state.get("year_fabricacion", None)],
-    "manufacturer": [st.session_state.get("fabricante", None)],
-    "model": [st.session_state.get("modelo", None)],
-    "condition": [st.session_state.get("estado_coche", None)],
-    "cylinders": [st.session_state.get("numero_cilindrada", None)],
-    "fuel": [st.session_state.get("tipo_combustible", None)],
-    "odometer": [st.session_state.get("numero_millas", None)],
-    "transmission": [st.session_state.get("tipo_transmision", None)],
-    "drive": [st.session_state.get("tipo_traccion", None)],
-    "type": [st.session_state.get("tipo_coche", None)],
-    "paint_color": [st.session_state.get("color_coche", None)],
-    "state": [st.session_state.get("estado", None)],
-}
-
-df_input = pd.DataFrame(data)
 
 # Botón para realizar la predicción
-if st.button("Realizar Predicción"):
-    # Mostrar el DataFrame con los valores ingresados
-    st.write("Datos ingresados para la predicción:", df_input)
+if st.button("💸 Tasa mi coche 🚘"): switch_page("tasador_particular")
 
-    # Realizar la predicción
-    prediccion = modelo.predict(df_input)
-
-    # Mostrar el resultado
-    st.success(f"El valor estimado del coche es: ${prediccion[0]:,.2f}")
-    
 
 # Botón para volver al inicio en la barra lateral:
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");

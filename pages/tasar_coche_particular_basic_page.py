@@ -29,6 +29,21 @@ def validar_letras(texto): return texto.isalpha();
 # Función para validar un correo electrónico:
 def validar_email(email): return '@' in email and '.' in email;
 
+# Lista de opciones para el fabricante
+opciones_fabricante = [
+    'gmc', 'chevrolet', 'toyota', 'ford', 'jeep', 'nissan', 'mazda',
+    'cadillac', 'honda', 'dodge', 'buick', 'chrysler', 'volvo', 'audi',
+    'infiniti', 'lincoln', 'acura', 'hyundai', 'mercedes benz', 'bmw',
+    'mitsubishi', 'subaru', 'volkswagen', 'porsche', 'kia', 'fiat',
+    'land rover', 'mercury', 'renault'
+];
+
+# Lista de opciones para el tipo de coche
+tipos_coche = [
+    'pickup', 'truck', 'other', 'coupe', 'SUV', 'hatchback',
+    'mini-van', 'sedan', 'offroad', 'convertible', 'wagon', 'van',
+    'bus'
+]
 
 # Título - 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼:
 st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼 </h1>", unsafe_allow_html = True);
@@ -41,20 +56,19 @@ year_fabricacion = st.number_input("Año de fabricación del coche:", min_value 
 st.session_state.year_fabricacion = year_fabricacion; # Se guarda el año de fabricación para poder invocarlo donde sea
 
 # Campo - Fabricante:
-fabricante = st.text_input("Fabricante:");
-if fabricante and not validar_letras(fabricante): st.error("El fabricante solo puede contener letras."); # Se comprueba si solo contiene letras
+fabricante = st.selectbox("Selecciona el fabricante:", opciones_fabricante)
 st.session_state.fabricante = fabricante ; # Se guarda el fabricante para poder invocarlo donde sea
 
 # Campo - Modelo:
 modelo = st.text_input("Modelo:");
-st.session_state.modelo = modelo; # Se guarda el modelo para poder invocarlo donde sea
+st.session_state.modelo =  modelo.lower().replace('-', ' '); # Se guarda el modelo para poder invocarlo donde sea
 
 # Campo - Tipo de Coche:
-tipo_coche = st.selectbox("Tipo de Coche:", ["Sedan", "SUV", "Hatchback", "Convertible", "Coupe", "Wagon", "Truck", "Van"]);
+tipo_coche = st.selectbox("Tipo de Coche:", tipos_coche);
 st.session_state.tipo_coche = tipo_coche; # Se guarda el tipo del coche para poder invocarlo donde sea
 
 # Campo - Estado del Coche:
-estado_coche = st.selectbox("Estado del Coche:", ["Nuevo", "Usado", "Para repuestos"]);
+estado_coche = st.selectbox("Estado del Coche:", ['good', 'excellent', 'like new', 'new', 'fair', 'salvage']);
 st.session_state.estado_coche = estado_coche;  # Se guarda el estado del coche para poder invocarlo donde sea
 
 # Campo - Kilometraje: 
@@ -62,7 +76,7 @@ numero_millas = st.number_input("Número de Millas:", min_value = 0);
 st.session_state.numero_millas = numero_millas;  # Se guarda el kilometraje del coche para poder invocarlo donde sea
 
 # Campo - Color del Coche:
-color_coche = st.text_input("Color del coche:");
+color_coche = st.selectbox("Color del coche:", ['white', 'blue', 'red', 'black', 'silver', 'grey', 'brown', 'yellow', 'orange', 'green', 'custom', 'purple']);
 st.session_state.color_coche = color_coche;  # Se guarda el color del coche para poder invocarlo donde sea
 
 
