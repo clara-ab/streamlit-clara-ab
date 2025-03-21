@@ -40,7 +40,7 @@ estados_eeuu = [
 ]
 
 # Título:
-st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasar Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
 
 
 # Sección de Datos de Contacto

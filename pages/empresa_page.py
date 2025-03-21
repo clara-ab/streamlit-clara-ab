@@ -70,6 +70,10 @@ with col2:
 # Añadir espacio con <br> (salto de línea) para un margen más grande
 st.markdown("<br>", unsafe_allow_html=True);
 
+# Añadir un botón para iniciar el proceso de tasación
+if st.button("Iniciar proceso de tasación"):
+    # Este botón redirige a la página donde se iniciará el proceso de tasación
+    switch_page("tasar_coche_empresa_intro_page")
 
 # Botón para volver al inicio en la barra lateral
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");

@@ -28,7 +28,7 @@ def validar_letras(texto): return texto.isalpha();
 def validar_email(email): return '@' in email and '.' in email;
 
 # Título:
-st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasar Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
 
 st.markdown("## DATOS BÁSICOS")
 anio_fabricacion = st.number_input("Año de fabricación del coche:", min_value=1900, max_value=2025)

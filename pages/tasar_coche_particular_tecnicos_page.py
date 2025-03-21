@@ -27,6 +27,9 @@ def validar_letras(texto): return texto.isalpha();
 # Función para validar el correo electrónico
 def validar_email(email): return '@' in email and '.' in email;
 
+# Título:
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
+
 # Sección de Detalles Técnicos
 st.markdown("## DETALLES TÉCNICOS");
 
