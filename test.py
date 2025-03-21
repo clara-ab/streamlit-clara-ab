@@ -11,10 +11,11 @@ from streamlit_extras.switch_page_button import switch_page
 
 # # # # # INICIO MAIN FUNCTION # # # # #
 def main ():
-    # Configuración de la página
-    st.set_page_config(page_title = "🚗 VENDE TU COCHE 🚗", page_icon=":car:", layout="wide")
 
-    # Se aplica un color de fondo #ffe3e8:
+    # Se configura la página para poder aprovechar toda la página:
+    st.set_page_config(page_title = "🚗 VENDE TU COCHE 🚗", page_icon = ":car:", layout = "wide");
+
+    # Se aplica un color de fondo deseado #ffe3e8:
     page_bg_color = """
     <style>
     [data-testid="stAppViewContainer"] {
@@ -30,6 +31,30 @@ def main ():
     
     # Añadir espacio con <br> (salto de línea) para un margen más grande
     st.markdown("<br>", unsafe_allow_html=True);
+
+    # Texto introductorio para la página de la empresa
+    st.markdown("""
+        # ¡Bienvenido a **Clara's Car Corner**! 🚗✨
+
+        **¿Estás buscando vender tu coche usado?**  
+        ¡Estás en el lugar adecuado! En **Clara's Car Corner**, nos especializamos en ofrecer un proceso de compra y venta de coches de segunda mano **transparente**, **rápido** y **sin complicaciones**. 💨
+
+        ## ¿Por qué elegirnos? 🤔
+
+        ### 1. **Tasación justa 💸**
+        Utilizamos un algoritmo avanzado para ofrecerte una **estimación precisa** del valor de tu coche. Nuestro objetivo es asegurarnos de que obtengas un precio justo basado en el **modelo**, **año**, **kilometraje** y el **estado del vehículo**.
+
+        ### 2. **Proceso sencillo 📝**
+        Olvídate de trámites complicados. Con nuestra plataforma, solo tendrás que rellenar unos simples datos, y nosotros nos encargaremos del resto. ¡Así de fácil! ✅
+
+        ### 3. **Asesoramiento personalizado 💬**
+        Si tienes alguna duda, **nuestro equipo de expertos está disponible** para ayudarte en todo momento. Te ofreceremos la mejor orientación para que tengas la experiencia más cómoda posible. 🤝
+
+        ---
+
+        Si **quieres vender tu coche 🚙**, estamos aquí para ayudarte a hacerlo de la manera más **fácil** y **segura** posible.  
+        ¡Descubre todo lo que **Clara's Car Corner** tiene para ofrecerte! 🌟
+    """)
 
     # Imagen:
     st.image("images/portada_coches.png", use_container_width = True);
