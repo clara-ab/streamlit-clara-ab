@@ -43,8 +43,8 @@ estados_eeuu = [
 ]
 
 
-# Título - 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼:
-st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
+# Título - 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼</h1>", unsafe_allow_html = True);
 
 
 # Título - Datos de Contacto:

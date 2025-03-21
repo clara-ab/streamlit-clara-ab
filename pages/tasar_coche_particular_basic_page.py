@@ -30,8 +30,8 @@ def validar_letras(texto): return texto.isalpha();
 def validar_email(email): return '@' in email and '.' in email;
 
 
-# Título - 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼:
-st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🛻👨🏼 </h1>", unsafe_allow_html = True);
+# Título - 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼:
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 👩🏽🚘 Tasación - Coche Particular 🚗👨🏼 </h1>", unsafe_allow_html = True);
 
 # Título - Datos Básicos:
 st.markdown("## DATOS BÁSICOS");
@@ -51,15 +51,19 @@ st.session_state.modelo = modelo; # Se guarda el modelo para poder invocarlo don
 
 # Campo - Tipo de Coche:
 tipo_coche = st.selectbox("Tipo de Coche:", ["Sedan", "SUV", "Hatchback", "Convertible", "Coupe", "Wagon", "Truck", "Van"]);
+st.session_state.tipo_coche = tipo_coche; # Se guarda el tipo del coche para poder invocarlo donde sea
 
 # Campo - Estado del Coche:
 estado_coche = st.selectbox("Estado del Coche:", ["Nuevo", "Usado", "Para repuestos"]);
+st.session_state.estado_coche = estado_coche;  # Se guarda el estado del coche para poder invocarlo donde sea
 
 # Campo - Kilometraje: 
 numero_millas = st.number_input("Número de Millas:", min_value = 0);
+st.session_state.numero_millas = numero_millas;  # Se guarda el kilometraje del coche para poder invocarlo donde sea
 
 # Campo - Color del Coche:
 color_coche = st.text_input("Color del coche:");
+st.session_state.color_coche = color_coche;  # Se guarda el color del coche para poder invocarlo donde sea
 
 
 # Se añade un espacio:

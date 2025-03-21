@@ -22,8 +22,8 @@ page_bg_color = """
     """
 st.markdown(page_bg_color, unsafe_allow_html = True);
 
-# Título - 🏢🚘 Tasación - Flota Empresa 🛻🏣:
-st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🏢🚘 Tasación - Flota Empresa 🛻🏣 </h1>", unsafe_allow_html = True);
+# Título - 🏢🚘 Tasación - Flota Empresa 🚗🏣:
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🏢🚘 Tasación - Flota Empresa 🚗🏣 </h1>", unsafe_allow_html = True);
 
 # Título para el Formulariode Datos de la Empresa:
 st.markdown("## Datos de la Empresa");
