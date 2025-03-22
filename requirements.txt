@@ -1,2 +1,6 @@
 streamlit
-streamlit_extras
+pandas
+numpy
+scikit-learn
+pickle
+huggingface_hub
