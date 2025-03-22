@@ -1,4 +1,3 @@
 __pycache__
 .env
 .learn
-models/random_forest_grid_model.pkl

@@ -12,6 +12,9 @@ from streamlit_extras.switch_page_button import switch_page
 
 # # # # #  INICIO FUNCIÓN TASAR COCHE PARTICULAR (1) # # # # #
 
+# Se configura la página para poder aprovechar toda la página:
+st.set_page_config(page_title = "👩🏽 Tasación - Particular 👨🏼", page_icon = ":car:", layout = "wide");
+
 # Se aplica un color de fondo deseado #fffafe:
 page_bg_color = """
     <style>

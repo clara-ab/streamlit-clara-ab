@@ -62,6 +62,9 @@ def cargar_encoders():
 
 # # # # #  INICIO FUNCIÓN TASAR COCHE EMPRESA (1) # # # # #
 
+# Se configura la página para poder aprovechar toda la página:
+st.set_page_config(page_title = "🏢 Tasación - Flota Empresa 🏣", page_icon = ":car:", layout = "wide");
+
 # Se aplica un color de fondo deseado #fffafe:
 page_bg_color = """
     <style>
@@ -175,6 +178,8 @@ if archivo_coche is not None:
         # Identificar las columnas categóricas en df_input
         categorical_cols = df_input.select_dtypes(include=["object"]).columns.tolist()
 
+        df_original = df_input.copy();
+
         # Aplicar el LabelEncoder a las columnas categóricas en df_input
         for column in categorical_cols:
             # Usamos el diccionario de encoders y el método .get para aplicar el encoder correspondiente
@@ -185,24 +190,24 @@ if archivo_coche is not None:
         predicciones_originales = np.exp(predicciones);
 
         # Añadir las predicciones al DataFrame como una nueva columna
-        df_input['predicted_price'] = predicciones_originales
+        df_original['predicted_price'] = predicciones_originales.round(0);
 
         # Mostrar el DataFrame con las predicciones
         st.write("Archivo con las predicciones:");
-        st.write(df_input);
+        st.write(df_original);
 
         # Guardar el archivo con las predicciones en un nuevo archivo Excel
         archivo_con_predicciones = "archivo_con_predicciones.xlsx"
-        df_input.to_excel(archivo_con_predicciones, index=False)
+        df_original.to_excel(archivo_con_predicciones, index=False)
 
         # Botón para que el usuario descargue el archivo con las predicciones
         with open(archivo_con_predicciones, "rb") as f:
             st.download_button(
-                label="📥 Descargar archivo con las predicciones",
-                data=f,
-                file_name="archivo_con_predicciones.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+                label = "📥 Descargar archivo con las predicciones",
+                data = f,
+                file_name = "archivo_con_predicciones.xlsx",
+                mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            );
 
 
 # Botón para volver al inicio en la barra lateral:

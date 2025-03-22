@@ -44,6 +44,9 @@ def cargar_encoders():
 
 # # # # #  INICIO TASADOR PARTICULAR  # # # # #
 
+# Se configura la página para poder aprovechar toda la página:
+st.set_page_config(page_title = "👩🏽 Tasación - Particular 👨🏼", page_icon = ":car:", layout = "wide");
+
 # Se aplica un color de fondo #f5dae0:
 page_bg_color = """
     <style>
