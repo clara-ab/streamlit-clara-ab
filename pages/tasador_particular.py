@@ -22,24 +22,24 @@ from huggingface_hub import hf_hub_download
 # Función para cargar el modelo desde Hugging Face
 def cargar_modelo():
     # Descargar el modelo desde Hugging Face
-    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl")
+    modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl");
     
     # Cargar el modelo descargado
     with open(modelo_path, "rb") as file:
-        modelo = pickle.load(file)
+        modelo = pickle.load(file);
     
-    return modelo
+    return modelo;
 
 # Función para cargar los encoders desde Hugging Face
 def cargar_encoders():
     # Descargar el archivo de encoders desde Hugging Face
-    encoders_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="encoders.pkl")
+    encoders_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="encoders.pkl");
     
     # Cargar los encoders desde la ruta descargada
     with open(encoders_path, "rb") as file:
-        encoders = pickle.load(file)
+        encoders = pickle.load(file);
     
-    return encoders
+    return encoders;
 
 
 # # # # #  INICIO TASADOR PARTICULAR  # # # # #
