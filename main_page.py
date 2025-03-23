@@ -87,13 +87,6 @@ def main ():
         with col_b:
             if st.button("Empresa"): switch_page("empresa_page"); # Si lo pulsan, se cambia de página:
     
-    # Botones de selección:
-    #col1, col2 = st.columns(2) # Se crean dos "columnas" para organizar los botones en disposición horizontal:
-    #with col1:
-        #if st.button("Quiero un coche nuevo"): st.write("Has seleccionado: Quiero un coche nuevo.");
-        #if st.button("Particular"):  switch_page("particular_page");
-    #with col2:
-        #if st.button("Empresa"): switch_page("empresa_page");
     
 if __name__ == "__main__":
     main()
