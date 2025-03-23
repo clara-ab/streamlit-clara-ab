@@ -20,7 +20,7 @@ def main ():
     page_bg_color = """
     <style>
     [data-testid="stAppViewContainer"] {
-        background-color: #ffe3e8;
+        background-color: #fffafe;
     }
     </style>
     """
@@ -87,6 +87,7 @@ def main ():
         with col_b:
             if st.button("Empresa"): switch_page("empresa_page"); # Si lo pulsan, se cambia de página:
     
+
     
 if __name__ == "__main__":
     main()
