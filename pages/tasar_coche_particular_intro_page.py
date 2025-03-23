@@ -92,6 +92,6 @@ st.markdown("<br>", unsafe_allow_html=True);
 if st.button("Siguiente  ➡️  Datos Básicos"): switch_page("tasar_coche_particular_basic_page");
 
 # Botón para volver al inicio en la barra lateral:
-if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
+if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
 
 # # # # #  FIN FUNCIÓN TASAR COCHE PARTICULAR (1) # # # # #
