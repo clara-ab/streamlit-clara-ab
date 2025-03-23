@@ -76,6 +76,6 @@ if st.button("💸 Tasa mi coche 🚘"): switch_page("tasador_particular")
 
 
 # Botón para volver al inicio en la barra lateral:
-if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
+if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
 
 # # # # #  FIN FUNCIÓN TASAR COCHE PARTICULAR (3) # # # # #
