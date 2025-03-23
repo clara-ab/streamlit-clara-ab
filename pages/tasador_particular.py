@@ -108,5 +108,7 @@ if st.button("Realizar Predicción"):
     # Mostrar el resultado
     st.success(f"El valor estimado del coche es: ${prediccion_original[0]:.0f}")
 
+# Botón para volver al inicio en la barra lateral:
+if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
 
 # # # # #  FIN TASADOR PARTICULAR  # # # # #
