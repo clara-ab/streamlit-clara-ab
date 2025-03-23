@@ -139,16 +139,6 @@ with st.expander("📋 Datos ingresados para la predicción"):
 # Se añade un espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
-# Se carga el modelo del hub de Hugging Face:
-modelo = cargar_modelo();
-
-# Se realiza la predicción cuando el usuario presiona el botón:
-if st.button("🔍 Realizar Tasación"):
-    prediccion = modelo.predict(df_input);
-    prediccion_original = np.exp(prediccion); # Se realiza la transformación exponencial dado que el modelo está entrenado con los datos en logarítmico
-    st.success(f"💰 El valor estimado de tu coche es: **{prediccion_original[0]:,.0f} $**");
-
-
 # Se agrega el texto explicativo sobre el margen de error en MAPE con clases para el estilo:
 st.markdown("""
     <div class="margen-error">
@@ -160,6 +150,19 @@ st.markdown("""
         </p>
     </div>
 """, unsafe_allow_html=True);
+
+# Se añade un espacio:
+st.markdown("<br>", unsafe_allow_html=True);
+
+# Se carga el modelo del hub de Hugging Face:
+modelo = cargar_modelo();
+
+# Se realiza la predicción cuando el usuario presiona el botón:
+if st.button("🔍 Realizar Tasación"):
+    prediccion = modelo.predict(df_input);
+    prediccion_original = np.exp(prediccion); # Se realiza la transformación exponencial dado que el modelo está entrenado con los datos en logarítmico
+    st.success(f"💰 El valor estimado de tu coche es: **{prediccion_original[0]:,.0f} $**");
+
 
 
 # Botón para volver al inicio en la barra lateral
