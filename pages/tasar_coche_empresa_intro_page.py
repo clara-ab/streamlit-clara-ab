@@ -211,6 +211,6 @@ if archivo_coche is not None:
 
 
 # Botón para volver al inicio en la barra lateral:
-if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
+if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
 
 # # # # #  FIN FUNCIÓN TASAR COCHE EMPRESA (1) # # # # #

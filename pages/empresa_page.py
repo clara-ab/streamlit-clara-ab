@@ -76,6 +76,6 @@ if st.button("Iniciar proceso de tasación"):
     switch_page("tasar_coche_empresa_intro_page")
 
 # Botón para volver al inicio en la barra lateral
-if st.sidebar.button("🏠 Volver al Inicio"): switch_page("test");
+if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
 
 # # # # #  FIN FUNCIÓN EMPRESA # # # # #
