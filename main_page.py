@@ -23,43 +23,6 @@ def main():
         """
     st.markdown(page_bg_color, unsafe_allow_html = True);
 
-    # Barra de navegación horizontal
-    st.markdown(
-        """
-        <style>
-        
-        .nav {
-            display: flex;
-            justify-content: center;
-            background-color: #ffdaf8;
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .nav a:hover {
-        background-color: #fffafe;
-        color: #1d0519;
-        }
-
-        </style>
-        <div class="nav">
-            <a href="#" onclick="switch_page('main_page')">Inicio</a>
-            <a href="particular_page.py">Tasación - Particular</a>
-            <a href="#" onclick="switch_page('empresa_page')">Tasación - Empresa</a>
-            <a href="#" onclick="switch_page('sobre_nosotros')">Sobre Nosotros</a>
-            <a href="#" onclick="switch_page('nuestro_metodo')">Nuestro Método</a>
-            <a href="#" onclick="switch_page('contacto')">Contáctanos</a>
-        </div>
-        """,
-        unsafe_allow_html=True
-    );
 
     # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
