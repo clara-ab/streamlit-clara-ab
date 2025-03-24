@@ -8,6 +8,7 @@ from streamlit_extras.switch_page_button import switch_page
 
 # # # # #  FIN LIBRERÍAS # # # # #
 
+
 # # # # # INICIO MAIN FUNCTION # # # # #
 def main():
     # Se configura la página para poder aprovechar toda la página:
