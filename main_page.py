@@ -1,7 +1,6 @@
-
 # # # # # INICIO LIBRERÍAS # # # # #
 
-# Librería para pdoer utilizar Streamlit
+# Librería para poder utilizar Streamlit
 import streamlit as st
 
 # Librería para poder cambiar de páginas de visualización:
@@ -9,32 +8,70 @@ from streamlit_extras.switch_page_button import switch_page
 
 # # # # #  FIN LIBRERÍAS # # # # #
 
-
 # # # # # INICIO MAIN FUNCTION # # # # #
-def main ():
-
+def main():
     # Se configura la página para poder aprovechar toda la página:
-    st.set_page_config(page_title = "🚗 CLARA'S CAR CORNER 🚗", page_icon = ":car:", layout = "wide");
-
-    # Se aplica un color de fondo deseado #ffe3e8:
+    st.set_page_config(page_title="🚗 CLARA'S CAR CORNER 🚗", page_icon=":car:", layout="wide");
+    
+    # Se aplica un color de fondo deseado #fffafe:
     page_bg_color = """
-    <style>
-    [data-testid="stAppViewContainer"] {
-        background-color: #fffafe;
-    }
-    </style>
-    """
+        <style>
+        [data-testid="stAppViewContainer"] {
+            background-color: #fffafe;
+        }
+        </style>
+        """
     st.markdown(page_bg_color, unsafe_allow_html = True);
 
+    # Barra de navegación horizontal
+    st.markdown(
+        """
+        <style>
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffdaf8;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .nav a:hover {
+        background-color: #fffafe;
+        color: #1d0519;
+        }
+
+        </style>
+        <div class="nav">
+            <a href="#" onclick="switch_page('main_page')">Inicio</a>
+            <a href="particular_page.py">Tasación - Particular</a>
+            <a href="#" onclick="switch_page('empresa_page')">Tasación - Empresa</a>
+            <a href="#" onclick="switch_page('sobre_nosotros')">Sobre Nosotros</a>
+            <a href="#" onclick="switch_page('nuestro_metodo')">Nuestro Método</a>
+            <a href="#" onclick="switch_page('contacto')">Contáctanos</a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    );
+
+    # Se añade un espacio:
+    st.markdown("<br>", unsafe_allow_html=True);
 
     # Título - 🚗 CLARA'S CAR CORNER 🚗 :
-    st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html = True);
+    st.markdown("<h1 style = 'text-align: center'; font-family: 'Droid Sans Mono', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html=True);
     
     # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
 
     # Imagen:
-    st.image("images/portada_coches.png", use_container_width = True);
+    st.image("images/portada_coches.png", use_container_width=True);
 
     # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
@@ -62,35 +99,28 @@ def main ():
         Si **quieres vender tu coche 🚙**, estamos aquí para ayudarte a hacerlo de la manera más **fácil** y **segura** posible.  
         ¡Descubre todo lo que **Clara's Car Corner** tiene para ofrecerte! 🌟
     """);
-    
+
     # Subtítulo: 
-    st.markdown("<h3 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html = True);
+    st.markdown("<h3 style = 'text-align: center'; font-family: 'Droid Sans Mono', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html=True);
     
     # Se añade un espacio:
     st.markdown("<br>", unsafe_allow_html=True);
 
     # Botones - Particular vs. Empresa:
-
-    # Se crean tres columnas para solo rellenar la del medio:
     col1, col2, col3 = st.columns([1, 1, 1]);
 
     with col2:
-
-        # Se generan dos columnas en la columna del medio para los dos botones:
         col_a, col_b = st.columns(2);
     
-        # Botón "Particular":
         with col_a:
-            if st.button("Particular"): switch_page("particular_page"); # Si lo pulsan, se cambia de página:
+            if st.button("Particular"): 
+                switch_page("particular_page");
         
-        # Botón "Empresa":
         with col_b:
-            if st.button("Empresa"): switch_page("empresa_page"); # Si lo pulsan, se cambia de página:
-    
+            if st.button("Empresa"): 
+                switch_page("empresa_page");
 
-    
 if __name__ == "__main__":
     main()
-
 
 # # # # # FIN MAIN FUNCTION # # # # #
