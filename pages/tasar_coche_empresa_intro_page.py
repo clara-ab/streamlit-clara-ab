@@ -15,6 +15,9 @@ import numpy as np
 
 from huggingface_hub import hf_hub_download
 
+# Librería para el menú de opciones:
+from streamlit_option_menu import option_menu 
+
 # # # # #  FIN LIBRERÍAS # # # # #
 
 # Función para limpiar los datos antes de hacer predicciones
@@ -74,6 +77,43 @@ page_bg_color = """
     </style>
     """
 st.markdown(page_bg_color, unsafe_allow_html = True);
+
+# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+with st.container():
+    menu = option_menu(
+        menu_title = None,  # No título para el menú
+        options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+        icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
+        orientation = "horizontal",  # Menú horizontal
+        default_index = 2,  # Establecer "Inicio" como la opción por defecto
+        styles={
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            "nav-link": {
+                "font-size": "16px",
+                "text-align": "center",
+                "padding": "5px",
+                "margin": "0px",
+                "color": "#5c0048",
+                "font-weight": "bold",
+            },
+            "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
+        }
+    )
+
+    # Redirigir según la opción seleccionada:
+    if menu == "Inicio":
+        switch_page("main_page")
+    elif menu == "Tasación - Particular":
+        switch_page("particular_page")
+    elif menu == "Tasación - Empresa":
+        pass
+    elif menu == "Sobre Nosotros":
+        switch_page("nosotros_page")
+    elif menu == "Nuestro Método":
+        st.write("En proceso...")
+    elif menu == "Contáctanos":
+        st.write("Contacto")
 
 # Título - 🏢🚘 Tasación - Flota Empresa 🚗🏣:
 st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🏢🚘 Tasación - Flota Empresa 🚗🏣 </h1>", unsafe_allow_html = True);

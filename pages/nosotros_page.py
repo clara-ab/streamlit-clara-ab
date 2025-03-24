@@ -7,6 +7,9 @@ import streamlit as st
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
+# Librería para el menú de opciones:
+from streamlit_option_menu import option_menu 
+
 # # # # #  FIN LIBRERÍAS # # # # #
 
  # Se configura la página para aprovechar todo el espacio:
@@ -21,6 +24,44 @@ page_bg_color = """
     </style>
 """
 st.markdown(page_bg_color, unsafe_allow_html=True);
+
+# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+with st.container():
+    menu = option_menu(
+        menu_title = None,  # No título para el menú
+        options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+        icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
+        orientation = "horizontal",  # Menú horizontal
+        default_index = 3,  # Establecer "Inicio" como la opción por defecto
+        styles={
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            "nav-link": {
+                "font-size": "16px",
+                "text-align": "center",
+                "padding": "5px",
+                "margin": "0px",
+                "color": "#5c0048",
+                "font-weight": "bold",
+            },
+            "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
+        }
+    )
+
+    # Redirigir según la opción seleccionada:
+    if menu == "Inicio":
+        switch_page("main_page")
+    elif menu == "Tasación - Particular":
+        switch_page("particular_page")
+    elif menu == "Tasación - Empresa":
+        switch_page("empresa_page")
+    elif menu == "Sobre Nosotros":
+        pass
+    elif menu == "Nuestro Método":
+        st.write("En proceso...")
+    elif menu == "Contáctanos":
+        st.write("Contacto")
+
 
 # Título
 st.markdown("<h1 style='text-align: center; font-family: \"Droid Sans Mono\", monospace;'>Sobre Nosotros</h1>", unsafe_allow_html=True);
@@ -41,7 +82,7 @@ st.markdown("""
 """);
 
 # Imagen del equipo
-st.image("images/equipo.png", use_container_width=True);
+st.image("images/equipo_image.png", use_container_width=True);
 
 # Espacio
 st.markdown("<br>", unsafe_allow_html=True);

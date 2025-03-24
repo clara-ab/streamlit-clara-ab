@@ -19,6 +19,9 @@ import numpy as np
 # Librería para poder conectarse al Hub de Hugging Face:
 from huggingface_hub import hf_hub_download
 
+# Librería para el menú de opciones:
+from streamlit_option_menu import option_menu  
+
 # # # # # FIN LIBRERÍAS # # # # #
 
 
@@ -80,6 +83,44 @@ def aplicar_estilos():
 
 # Se aplican todos los estilos definidos a la página:
 aplicar_estilos();
+
+# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+with st.container():
+    menu = option_menu(
+        menu_title = None,  # No título para el menú
+        options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+        icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
+        orientation = "horizontal",  # Menú horizontal
+        default_index = 1,  # Establecer "Inicio" como la opción por defecto
+        styles={
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            "nav-link": {
+                "font-size": "16px",
+                "text-align": "center",
+                "padding": "5px",
+                "margin": "0px",
+                "color": "#5c0048",
+                "font-weight": "bold",
+            },
+            "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
+        }
+    )
+
+    # Redirigir según la opción seleccionada:
+    if menu == "Inicio":
+        switch_page("main_page")
+    elif menu == "Tasación - Particular":
+        pass
+    elif menu == "Tasación - Empresa":
+        switch_page("empresa_page")
+    elif menu == "Sobre Nosotros":
+        switch_page("nosotros_page")
+    elif menu == "Nuestro Método":
+        st.write("En proceso...")
+    elif menu == "Contáctanos":
+        st.write("Contacto")
+
 
 # Función para cargar el modelo (se accede al hub de Hugging Face)::
 def cargar_modelo():
