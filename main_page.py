@@ -1,19 +1,19 @@
-
 # # # # # INICIO LIBRERÍAS # # # # #
 
-# Librería para poder utilizar Streamlit:
+# Librería para poder utilizar Streamlit
 import streamlit as st
 
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
-# # # # #  FIN LIBRERÍAS # # # # #
+from streamlit_navigation_bar import st_navbar
 
+# # # # #  FIN LIBRERÍAS # # # # #
 
 # # # # # INICIO MAIN FUNCTION # # # # #
 def main():
     # Se configura la página para poder aprovechar toda la página:
-    st.set_page_config(page_title = "🚗 CLARA'S CAR CORNER 🚗", page_icon = ":car:", layout = "wide");
+    st.set_page_config(page_title="🚗 CLARA'S CAR CORNER 🚗", page_icon=":car:", layout="wide");
     
     # Se aplica un color de fondo deseado #fffafe:
     page_bg_color = """
@@ -27,19 +27,19 @@ def main():
 
 
     # Se añade un espacio:
-    st.markdown("<br>", unsafe_allow_html = True);
+    st.markdown("<br>", unsafe_allow_html=True);
 
     # Título - 🚗 CLARA'S CAR CORNER 🚗 :
     st.markdown("<h1 style = 'text-align: center'; font-family: 'Droid Sans Mono', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html=True);
     
     # Se añade un espacio:
-    st.markdown("<br>", unsafe_allow_html = True);
+    st.markdown("<br>", unsafe_allow_html=True);
 
     # Imagen:
-    st.image("images/portada_coches.png", use_container_width = True);
+    st.image("images/portada_coches.png", use_container_width=True);
 
     # Se añade un espacio:
-    st.markdown("<br>", unsafe_allow_html = True);
+    st.markdown("<br>", unsafe_allow_html=True);
 
     # Texto introductorio para la página de la empresa:
     st.markdown("""
@@ -69,7 +69,7 @@ def main():
     st.markdown("<h3 style = 'text-align: center'; font-family: 'Droid Sans Mono', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html=True);
     
     # Se añade un espacio:
-    st.markdown("<br>", unsafe_allow_html = True);
+    st.markdown("<br>", unsafe_allow_html=True);
 
     # Botones - Particular vs. Empresa:
     col1, col2, col3 = st.columns([1, 1, 1]);
